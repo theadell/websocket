@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>WebSocket Test</title>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var ws = new WebSocket("ws://localhost:8080/ws");
+
+        ws.onopen = function (event) {
+          console.log("Connected to WebSocket");
+          ws.send("Hello, server!");
+        };
+
+        ws.onmessage = function (event) {
+          console.log("Message from server:", event.data);
+        };
+
+        ws.onerror = function (event) {
+          console.error("WebSocket error:", event);
+        };
+
+        ws.onclose = function (event) {
+          console.log("WebSocket connection closed:", event);
+        };
+      });
+    </script>
+  </head>
+  <body>
+    <h1>WebSocket Test</h1>
+  </body>
+</html>
